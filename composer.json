@@ -1,0 +1,23 @@
+{
+  "name": "zrk4939/seo-module",
+  "type": "yii2-extension",
+  "description": "Files Module",
+  "keywords": [
+    "yii2",
+    "extension"
+  ],
+  "authors": [
+    {
+      "name": "Ilya Youshketov",
+      "email": "zrk4939@gmail.com"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "zrk4939\\modules\\seo\\": ""
+    }
+  }
+}
