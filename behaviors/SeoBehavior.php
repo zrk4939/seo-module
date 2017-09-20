@@ -56,7 +56,9 @@ class SeoBehavior extends Behavior
             $meta->setAttribute('url', $model->{$this->urlAttribute});
         }
 
-        $meta->load(Yii::$app->request->post());
+        if(is_a(Yii::$app,'yii\web\Application')){
+            $meta->load(Yii::$app->request->post());
+        }
 
         if ($meta->manual == 0) {
             $meta->setAttribute('title', Html::encode($model->{$this->nameAttribute}));
