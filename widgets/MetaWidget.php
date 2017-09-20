@@ -8,6 +8,7 @@
 
 namespace zrk4939\modules\seo\widgets;
 
+use yii\db\ActiveRecord;
 use zrk4939\modules\seo\models\Seo;
 use Yii;
 use yii\base\Widget;
@@ -28,46 +29,33 @@ class MetaWidget extends Widget
 
         return $this->render('head', [
             'model' => $model,
-            'canonicalUrl' => $this->getCanonicalUrl($model),
-            'absoluteUrl' => $this->getAbsoluteUrl($model),
+
             'addCanonical' => $this->addCanonical,
+            'canonicalUrl' => $this->getAbsoluteUrl($model),
+
+            'absoluteUrl' => $this->getAbsoluteUrl($model),
+
             'addAlternateMobile' => $this->addAlternateMobile,
             'mobileUrl' => $this->getMobileUrl($model)
         ]);
     }
 
     /**
-     * @param $model
-     * @return string
-     */
-    public function getCanonicalUrl($model)
-    {
-        if (Yii::$app->has('frontendUrlManager')) {
-            return Yii::$app->frontendUrlManager->getBaseUrl() . $model->url;
-        }
-
-        return $this->getAbsoluteUrl($model);
-    }
-
-    /**
-     * @param $model
+     * @param ActiveRecord $model
      * @return string
      */
     public function getAbsoluteUrl($model)
     {
-        return Yii::$app->urlManager->getBaseUrl() . $model->url;
+        return Yii::$app->urlManager->getHostInfo() . $model->getAttribute('url');
     }
 
     /**
-     * @param $model
+     * @param ActiveRecord $model
      * @return string
+     * TODO
      */
     public function getMobileUrl($model)
     {
-        if (Yii::$app->has('mobileUrlManager')) {
-            return Yii::$app->mobileUrlManager->getBaseUrl() . $model->url;
-        }
-
         return null;
     }
 }
