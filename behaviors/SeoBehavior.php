@@ -13,6 +13,7 @@ use yii\base\Behavior;
 use yii\base\Event;
 use yii\db\ActiveRecord;
 use yii\db\AfterSaveEvent;
+use yii\helpers\ArrayHelper;
 use zrk4939\modules\seo\models\Seo;
 use yii\bootstrap\Html;
 use Yii;
@@ -21,6 +22,7 @@ class SeoBehavior extends Behavior
 {
     public $nameAttribute = 'name';
     public $urlAttribute = 'url';
+    public $imageUrlAttribute = 'image';
 
     public function events()
     {
@@ -31,10 +33,11 @@ class SeoBehavior extends Behavior
     }
 
     /**
-     * @param AfterSaveEvent $model
+     * @param AfterSaveEvent $event
      */
     public function saveSeo($event)
     {
+        /* @var ActiveRecord $model */
         $model = $event->sender;
 
         $modelSlug = $model->getAttribute('slug');
@@ -57,6 +60,10 @@ class SeoBehavior extends Behavior
 
         if ($meta->manual == 0) {
             $meta->setAttribute('title', Html::encode($model->{$this->nameAttribute}));
+        }
+
+        if (!empty($image_url = ArrayHelper::getValue($model, $this->imageUrlAttribute))) {
+            $meta->setAttribute('image_url', $image_url);
         }
 
         $meta->save();
