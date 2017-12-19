@@ -62,6 +62,8 @@ class SeoBehavior extends Behavior
 
         if ($meta->manual == 0) {
             $meta->setAttribute('title', Html::encode($model->{$this->nameAttribute}));
+            $meta->setAttribute('keywords', Html::encode($model->{$this->nameAttribute}));
+            $meta->setAttribute('description', Html::encode($model->{$this->nameAttribute}));
         }
 
         if (!empty($image_url = ArrayHelper::getValue($model, $this->imageUrlAttribute))) {
