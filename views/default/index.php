@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'keywords',
             'description',
 
-            ['class' => 'domain\helpers\ActionColumn'],
+            ['class' => '\yii\grid\ActionColumn'],
         ],
     ]); ?>
     <?php Pjax::end(); ?></div>
