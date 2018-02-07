@@ -6,6 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model zrk4939\modules\seo\models\Seo */
 /* @var $admin boolean */
+/* @var $enabledTags array */
 
 $this->title = 'Редактирование SEO: ' . $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'SEO', 'url' => ['index']];
@@ -22,6 +23,7 @@ $this->params['breadcrumbs'][] = 'Редактирование';
         'model' => $model,
         'form' => $form,
         'admin' => $admin,
+        'enabledTags' => $enabledTags,
     ]) ?>
 
     <div class="form-group">

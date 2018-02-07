@@ -58,9 +58,10 @@ class MetaManageWidget extends Widget
         }
         $this->populateMeta();
 
-        return $this->render('main', [
+        return $this->render('manage-form', [
             'form' => $this->form,
             'model' => $this->meta,
+            'enabledTags' => \zrk4939\modules\seo\SeoModule::getEnabledTags(),
         ]);
     }
 

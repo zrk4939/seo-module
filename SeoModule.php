@@ -11,6 +11,13 @@ class SeoModule extends \yii\base\Module
     public $titlePrefix = '';
     public $titlePostfix = '';
 
+    public $enabledTags = [
+        'title',
+        'description',
+        'keywords',
+        'og:image'
+    ];
+
     /**
      * @inheritdoc
      */
@@ -46,5 +53,13 @@ class SeoModule extends \yii\base\Module
             'titlePrefix' => $module->titlePrefix,
             'titlePostfix' => $module->titlePostfix,
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getEnabledTags()
+    {
+        return SeoModule::getInstance()->enabledTags;
     }
 }

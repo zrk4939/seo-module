@@ -72,6 +72,7 @@ class DefaultController extends Controller
         return $this->render('create', [
             'model' => $model,
             'admin' => true,
+            'enabledTags' => \zrk4939\modules\seo\SeoModule::getEnabledTags(),
         ]);
     }
 
@@ -92,6 +93,7 @@ class DefaultController extends Controller
         return $this->render('update', [
             'model' => $model,
             'admin' => true,
+            'enabledTags' => \zrk4939\modules\seo\SeoModule::getEnabledTags(),
         ]);
     }
 

@@ -9,6 +9,7 @@
 /* @var $addAlternateMobile boolean */
 
 $config = \zrk4939\modules\seo\SeoModule::getConfig();
+$enabledTags = \zrk4939\modules\seo\SeoModule::getEnabledTags();
 
 if ($addCanonical) {
     $this->registerLinkTag([
@@ -25,18 +26,18 @@ if ($addAlternateMobile) {
     ]);
 }
 
-if (!empty($model->title)) {
+if (!empty($model->title) && isset($enabledTags['title'])) {
     $this->title = $config['titlePrefix'] . $model->title . $config['titlePostfix'];
 }
 
-if (!empty($model->description)) {
+if (!empty($model->description) && isset($enabledTags['description'])) {
     $this->registerMetaTag([
         'name' => 'description',
         'content' => $model->description,
     ]);
 }
 
-if (!empty($model->keywords)) {
+if (!empty($model->keywords) && isset($enabledTags['keywords'])) {
     $this->registerMetaTag([
         'name' => 'keywords',
         'content' => $model->keywords,
@@ -57,19 +58,19 @@ $this->registerMetaTag([
     'property' => 'og:locale',
     'content' => Yii::$app->formatter->locale,
 ]);
-if (!empty($model->title)) {
+if (!empty($model->title) && isset($enabledTags['title'])) {
     $this->registerMetaTag([
         'property' => 'og:title',
         'content' => $model->title,
     ]);
 }
-if (!empty($model->description)) {
+if (!empty($model->description) && isset($enabledTags['description'])) {
     $this->registerMetaTag([
         'property' => 'og:description',
         'content' => $model->description,
     ]);
 }
-if (!empty($model->image_url)) {
+if (!empty($model->image_url) && isset($enabledTags['og:image'])) {
     $this->registerMetaTag([
         'property' => 'og:image',
         'content' => $model->image_url,

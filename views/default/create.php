@@ -7,6 +7,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model zrk4939\modules\seo\models\Seo */
 /* @var $admin boolean */
+/* @var $enabledTags array */
 
 $this->title = 'Добавление seo';
 $this->params['breadcrumbs'][] = ['label' => 'SEO', 'url' => ['index']];
@@ -22,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'form' => $form,
         'admin' => $admin,
+        'enabledTags' => $enabledTags,
     ]) ?>
 
     <div class="form-group">
