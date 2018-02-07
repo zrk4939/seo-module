@@ -27,8 +27,10 @@ if ($addAlternateMobile) {
 }
 
 if (!empty($model->title) && isset($enabledTags['title'])) {
-    $this->title = $config['titlePrefix'] . $model->title . $config['titlePostfix'];
+    $this->title = $model->title;
 }
+
+$this->title = $config['titlePrefix'] . $this->title . $config['titlePostfix'];
 
 if (!empty($model->description) && isset($enabledTags['description'])) {
     $this->registerMetaTag([
