@@ -8,6 +8,9 @@ use Yii;
 
 class SeoModule extends \yii\base\Module
 {
+    public $titlePrefix = '';
+    public $titlePostfix = '';
+
     /**
      * @inheritdoc
      */
@@ -30,5 +33,18 @@ class SeoModule extends \yii\base\Module
         $url = (Yii::$app->request->url === '') ? '/' : Yii::$app->request->url;
         $model = Seo::find()->where(['url' => $url])->one();
         return $model;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getConfig()
+    {
+        $module = SeoModule::getInstance();
+
+        return [
+            'titlePrefix' => $module->titlePrefix,
+            'titlePostfix' => $module->titlePostfix,
+        ];
     }
 }

@@ -1,7 +1,6 @@
 <?php
 
 /* @var $this \yii\web\View */
-
 /* @var $model \zrk4939\modules\seo\models\Seo */
 /* @var $canonicalUrl string */
 /* @var $absoluteUrl string */
@@ -9,14 +8,16 @@
 /* @var $mobileUrl string */
 /* @var $addAlternateMobile boolean */
 
-if($addCanonical){
+$config = \zrk4939\modules\seo\SeoModule::getConfig();
+
+if ($addCanonical) {
     $this->registerLinkTag([
         'rel' => 'canonical',
         'href' => $canonicalUrl,
     ]);
 }
 
-if($addAlternateMobile){
+if ($addAlternateMobile) {
     $this->registerLinkTag([
         'rel' => 'alternate',
         'media' => "only screen and (max-width: 992px)",
@@ -25,7 +26,7 @@ if($addAlternateMobile){
 }
 
 if (!empty($model->title)) {
-    $this->title = $model->title;
+    $this->title = $config['titlePrefix'] . $model->title . $config['titlePostfix'];
 }
 
 if (!empty($model->description)) {
