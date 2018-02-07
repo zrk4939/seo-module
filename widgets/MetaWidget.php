@@ -23,10 +23,6 @@ class MetaWidget extends Widget
         $url = (Yii::$app->request->url === '') ? '/' : Yii::$app->request->url;
         $model = Seo::find()->where(['url' => $url])->one();
 
-        if (empty($model)) {
-            return false;
-        }
-
         return $this->render('head', [
             'model' => $model,
 
@@ -46,6 +42,10 @@ class MetaWidget extends Widget
      */
     public function getAbsoluteUrl($model)
     {
+        if (empty($model)) {
+            return Yii::$app->request->absoluteUrl;
+        }
+
         return Yii::$app->urlManager->getHostInfo() . $model->getAttribute('url');
     }
 
