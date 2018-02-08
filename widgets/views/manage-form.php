@@ -6,7 +6,7 @@ use yii\bootstrap\Html;
 /* @var $this yii\web\View */
 /* @var $model \zrk4939\modules\seo\models\Seo */
 /* @var $form ActiveForm */
-/* @var $enableTags array */
+/* @var $enabledTags array */
 
 \zrk4939\modules\seo\widgets\MetaAsset::register($this);
 ?>
@@ -17,22 +17,22 @@ use yii\bootstrap\Html;
 
         <div class="col-md-6 manual-meta">
             <?php
-            if (isset($enableTags['title'])) {
+            if (isset($enabledTags['title'])) {
                 echo $form->field($model, 'title')->textInput();
             }
 
-            if (isset($enableTags['keywords'])) {
+            if (isset($enabledTags['keywords'])) {
                 echo $form->field($model, 'keywords')->textarea();
             }
             ?>
         </div>
         <div class="col-md-6 manual-meta">
             <?php
-            if (isset($enableTags['og:image'])) {
+            if (isset($enabledTags['og:image'])) {
                 echo $form->field($model, 'image_url')->textarea();
             }
 
-            if (isset($enableTags['description'])) {
+            if (isset($enabledTags['description'])) {
                 echo $form->field($model, 'description')->textarea();
             }
             ?>

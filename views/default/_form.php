@@ -21,22 +21,22 @@ use yii\bootstrap\Html;
             <div class="row">
                 <div class="col-md-6">
                     <?php
-                    if (isset($enableTags['title'])) {
+                    if (isset($enabledTags['title'])) {
                         echo $form->field($model, 'title')->textInput();
                     }
 
-                    if (isset($enableTags['keywords'])) {
+                    if (isset($enabledTags['keywords'])) {
                         echo $form->field($model, 'keywords')->textarea();
                     }
                     ?>
                 </div>
                 <div class="col-md-6">
                     <?php
-                    if (isset($enableTags['og:image'])) {
+                    if (isset($enabledTags['og:image'])) {
                         echo $form->field($model, 'image_url')->textarea();
                     }
 
-                    if (isset($enableTags['description'])) {
+                    if (isset($enabledTags['description'])) {
                         echo $form->field($model, 'description')->textarea();
                     }
                     ?>
