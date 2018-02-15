@@ -60,6 +60,8 @@ class SeoModule extends \yii\base\Module
      */
     public static function getEnabledTags()
     {
-        return SeoModule::getInstance()->enabledTags;
+        $tags = SeoModule::getInstance()->enabledTags;
+
+        return array_combine($tags, $tags);
     }
 }
