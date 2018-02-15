@@ -27,8 +27,6 @@ class MetaManageWidget extends Widget
      */
     public $form;
 
-    public $showExpanded = false;
-
     /**
      * @var Seo|null
      */
@@ -74,7 +72,5 @@ class MetaManageWidget extends Widget
         if (empty($this->meta)) {
             $this->meta = new Seo();
         }
-
-        $this->meta->manual = $this->showExpanded;
     }
 }
