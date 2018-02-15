@@ -13,14 +13,13 @@ use yii\behaviors\TimestampBehavior;
  * @property string $keywords
  * @property string $description
  * @property string $image_url
+ * @property boolean $manual
  * @property integer $created_at
  * @property integer $updated_at
  * @property boolean $status
  */
 class Seo extends \yii\db\ActiveRecord
 {
-    public $manual = false;
-
     /**
      * @inheritdoc
      */
