@@ -39,12 +39,8 @@ class MetaManageWidget extends Widget
     {
         parent::init();
 
-        if (empty($this->url)) {
+        if (empty($this->form)) {
             throw new InvalidConfigException('Не указана форма!');
-        }
-
-        if (empty($this->url)) {
-            throw new InvalidConfigException('Не указан URL!');
         }
     }
 
@@ -53,9 +49,6 @@ class MetaManageWidget extends Widget
      */
     public function run()
     {
-        if (!empty($this->url)) {
-            $this->meta = Seo::findOne(['url' => $this->url]);
-        }
         $this->populateMeta();
 
         return $this->render('manage-form', [
@@ -67,6 +60,10 @@ class MetaManageWidget extends Widget
 
     protected function populateMeta()
     {
+        if (!empty($this->url)) {
+            $this->meta = Seo::findOne(['url' => $this->url]);
+        }
+
         if (empty($this->meta)) {
             $this->meta = new Seo();
         }
