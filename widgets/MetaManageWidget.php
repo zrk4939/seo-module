@@ -27,10 +27,17 @@ class MetaManageWidget extends Widget
      */
     public $form;
 
+    public $showExpanded = false;
+
     /**
      * @var Seo|null
      */
     protected $meta = null;
+
+    /**
+     * @var bool
+     */
+    private $_manual = false;
 
     /**
      * @throws InvalidConfigException
@@ -67,5 +74,7 @@ class MetaManageWidget extends Widget
         if (empty($this->meta)) {
             $this->meta = new Seo();
         }
+
+        $this->meta->manual = $this->showExpanded;
     }
 }
