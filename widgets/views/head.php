@@ -75,6 +75,6 @@ if (!empty($model->description) && isset($enabledTags['description'])) {
 if (!empty($model->image_url) && isset($enabledTags['og:image'])) {
     $this->registerMetaTag([
         'property' => 'og:image',
-        'content' => $model->image_url,
+        'content' => Yii::$app->request->hostInfo . $model->image_url,
     ]);
 }
