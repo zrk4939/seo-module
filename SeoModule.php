@@ -23,6 +23,8 @@ class SeoModule extends \yii\base\Module
      */
     public $controllerNamespace = 'zrk4939\modules\seo\controllers';
 
+    public $defaultDescription = '';
+
     /**
      * @inheritdoc
      */
@@ -40,6 +42,14 @@ class SeoModule extends \yii\base\Module
         $url = (Yii::$app->request->url === '') ? '/' : Yii::$app->request->url;
         $model = Seo::find()->where(['url' => $url])->one();
         return $model;
+    }
+
+    /**
+     * @return string
+     */
+    public static function getDescription()
+    {
+        return SeoModule::getInstance()->defaultDescription;
     }
 
     /**

@@ -17,6 +17,7 @@ use yii\helpers\ArrayHelper;
 use zrk4939\modules\seo\models\Seo;
 use yii\bootstrap\Html;
 use Yii;
+use zrk4939\modules\seo\SeoModule;
 
 class SeoBehavior extends Behavior
 {
@@ -56,14 +57,17 @@ class SeoBehavior extends Behavior
             $meta->setAttribute('url', $model->{$this->urlAttribute});
         }
 
-        if(is_a(Yii::$app,'yii\web\Application')){
+        if (is_a(Yii::$app, 'yii\web\Application')) {
             $meta->load(Yii::$app->request->post());
         }
 
         if ($meta->manual == 0) {
             $meta->setAttribute('title', Html::encode($model->{$this->nameAttribute}));
             $meta->setAttribute('keywords', Html::encode($model->{$this->nameAttribute}));
-            $meta->setAttribute('description', Html::encode($model->{$this->nameAttribute}));
+        }
+
+        if (empty($meta->description)) {
+            $meta->setAttribute('description', Html::encode(SeoModule::getDescription()));
         }
 
         if ($this->imageUrlAttribute && !empty($image_url = ArrayHelper::getValue($model, $this->imageUrlAttribute))) {
