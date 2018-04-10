@@ -11,6 +11,8 @@
 $config = \zrk4939\modules\seo\SeoModule::getConfig();
 $enabledTags = \zrk4939\modules\seo\SeoModule::getEnabledTags();
 
+$description = $model->description . ' | ' . \zrk4939\modules\seo\SeoModule::getDescription();
+
 if ($addCanonical) {
     $this->registerLinkTag([
         'rel' => 'canonical',
@@ -32,10 +34,10 @@ if (!empty($model->title) && isset($enabledTags['title'])) {
 
 $this->title = $config['titlePrefix'] . $this->title . $config['titlePostfix'];
 
-if (!empty($model->description) && isset($enabledTags['description'])) {
+if (!empty($description) && isset($enabledTags['description'])) {
     $this->registerMetaTag([
         'name' => 'description',
-        'content' => $model->description,
+        'content' => $description,
     ]);
 }
 
@@ -66,10 +68,10 @@ if (!empty($model->title) && isset($enabledTags['title'])) {
         'content' => $model->title,
     ]);
 }
-if (!empty($model->description) && isset($enabledTags['description'])) {
+if (!empty($description) && isset($enabledTags['description'])) {
     $this->registerMetaTag([
         'property' => 'og:description',
-        'content' => $model->description,
+        'content' => $description,
     ]);
 }
 if (!empty($model->image_url) && isset($enabledTags['og:image'])) {
