@@ -11,7 +11,9 @@
 $config = \zrk4939\modules\seo\SeoModule::getConfig();
 $enabledTags = \zrk4939\modules\seo\SeoModule::getEnabledTags();
 
-$description = $model->description . ' | ' . \zrk4939\modules\seo\SeoModule::getDescription();
+$description = (!empty($model->description))
+    ? $model->description . ' | ' . \zrk4939\modules\seo\SeoModule::getDescription()
+    : \zrk4939\modules\seo\SeoModule::getDescription();
 
 if ($addCanonical) {
     $this->registerLinkTag([
