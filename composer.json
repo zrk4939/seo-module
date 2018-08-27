@@ -2,10 +2,8 @@
   "name": "zrk4939/seo-module",
   "type": "yii2-extension",
   "description": "Files Module",
-  "keywords": [
-    "yii2",
-    "extension"
-  ],
+  "license": "Unlicense",
+  "keywords": ["yii2", "extension"],
   "authors": [
     {
       "name": "Ilya Youshketov",
@@ -13,6 +11,7 @@
     }
   ],
   "require": {
+    "php": ">=7.0",
     "yiisoft/yii2": "*"
   },
   "autoload": {
