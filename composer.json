@@ -1,7 +1,7 @@
 {
   "name": "zrk4939/seo-module",
   "type": "yii2-extension",
-  "description": "Files Module",
+  "description": "Seo Module",
   "license": "Unlicense",
   "keywords": ["yii2", "extension"],
   "authors": [
