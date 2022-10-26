@@ -1,7 +1,7 @@
 <?php
 
-use yii\bootstrap\ActiveForm;
-use yii\bootstrap\Html;
+use yii\helpers\ActiveForm;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model \zrk4939\modules\seo\models\Seo */

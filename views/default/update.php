@@ -1,6 +1,6 @@
 <?php
 
-use yii\bootstrap\ActiveForm;
+use yii\helpers\ActiveForm;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
