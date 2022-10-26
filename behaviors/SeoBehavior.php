@@ -15,7 +15,7 @@ use yii\db\ActiveRecord;
 use yii\db\AfterSaveEvent;
 use yii\helpers\ArrayHelper;
 use zrk4939\modules\seo\models\Seo;
-use yii\bootstrap\Html;
+use yii\helpers\Html;
 use Yii;
 use zrk4939\modules\seo\SeoModule;
 
