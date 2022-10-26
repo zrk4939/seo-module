@@ -86,13 +86,13 @@ class SeoBehavior extends Behavior
         }
 
         if ($meta->manual == 0) {
-            if ($model->{$this->titleAttribute}) {
+            if ($this->titleAttribute) {
                 $meta->setAttribute('title', Html::encode($model->{$this->titleAttribute}));
             }
-            if ($model->{$this->descriptionAttribute}) {
+            if ($this->descriptionAttribute) {
                 $meta->setAttribute('description', StringHelper::truncateWords(html_entity_decode(strip_tags($model->{$this->descriptionAttribute})), $this->countWords, ''));
             }
-            if ($model->{$this->keywordsAttribute}) {
+            if ($this->keywordsAttribute) {
                 $meta->setAttribute('keywords', Html::encode($model->{$this->keywordsAttribute}));
             }
         }
