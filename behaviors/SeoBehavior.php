@@ -14,6 +14,7 @@ use yii\base\Event;
 use yii\db\ActiveRecord;
 use yii\db\AfterSaveEvent;
 use yii\helpers\ArrayHelper;
+use yii\helpers\StringHelper;
 use zrk4939\modules\seo\models\Seo;
 use yii\helpers\Html;
 use Yii;
@@ -22,8 +23,11 @@ use zrk4939\modules\seo\SeoModule;
 class SeoBehavior extends Behavior
 {
     public $nameAttribute = 'name';
+    public $textAttribute = 'text';
     public $urlAttribute = 'url';
     public $imageUrlAttribute = 'image';
+
+    public $countWords = 20;
 
     public function events()
     {
@@ -64,7 +68,7 @@ class SeoBehavior extends Behavior
         if ($meta->manual == 0) {
             $meta->setAttribute('title', Html::encode($model->{$this->nameAttribute}));
             $meta->setAttribute('keywords', Html::encode($model->{$this->nameAttribute}));
-            $meta->setAttribute('description', Html::encode($model->{$this->nameAttribute}));
+            $meta->setAttribute('description', Html::encode(StringHelper::truncateWords($model->{$this->textAttribute}, $this->countWords)));
         }
 
         if ($this->imageUrlAttribute && !empty($image_url = ArrayHelper::getValue($model, $this->imageUrlAttribute))) {
