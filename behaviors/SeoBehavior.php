@@ -22,9 +22,29 @@ use zrk4939\modules\seo\SeoModule;
 
 class SeoBehavior extends Behavior
 {
-    public $nameAttribute = 'name';
-    public $textAttribute = 'text';
+    /**
+     * @var string|false $titleAttribute
+     */
+    public $titleAttribute = 'name';
+
+    /**
+     * @var string|false $descriptionAttribute
+     */
+    public $descriptionAttribute = 'text';
+
+    /**
+     * @var string|false $keywordsAttribute
+     */
+    public $keywordsAttribute = false;
+
+    /**
+     * @var string|false $urlAttribute
+     */
     public $urlAttribute = 'url';
+
+    /**
+     * @var string|false $imageUrlAttribute
+     */
     public $imageUrlAttribute = 'image';
 
     public $countWords = 20;
@@ -66,9 +86,15 @@ class SeoBehavior extends Behavior
         }
 
         if ($meta->manual == 0) {
-            $meta->setAttribute('title', Html::encode($model->{$this->nameAttribute}));
-            $meta->setAttribute('keywords', Html::encode($model->{$this->nameAttribute}));
-            $meta->setAttribute('description', StringHelper::truncateWords(html_entity_decode(strip_tags($model->{$this->textAttribute})), $this->countWords));
+            if ($model->{$this->titleAttribute}) {
+                $meta->setAttribute('title', Html::encode($model->{$this->titleAttribute}));
+            }
+            if ($model->{$this->descriptionAttribute}) {
+                $meta->setAttribute('description', StringHelper::truncateWords(html_entity_decode(strip_tags($model->{$this->descriptionAttribute})), $this->countWords));
+            }
+            if ($model->{$this->keywordsAttribute}) {
+                $meta->setAttribute('keywords', Html::encode($model->{$this->keywordsAttribute}));
+            }
         }
 
         if ($this->imageUrlAttribute && !empty($image_url = ArrayHelper::getValue($model, $this->imageUrlAttribute))) {
