@@ -1,5 +1,7 @@
 <?php
 
+use zrk4939\modules\seo\SeoModule;
+
 /* @var $this \yii\web\View */
 /* @var $model \zrk4939\modules\seo\models\Seo */
 /* @var $canonicalUrl string */
@@ -8,12 +10,13 @@
 /* @var $mobileUrl string */
 /* @var $addAlternateMobile boolean */
 
-$config = \zrk4939\modules\seo\SeoModule::getConfig();
-$enabledTags = \zrk4939\modules\seo\SeoModule::getEnabledTags();
+$config = SeoModule::getConfig();
+$enabledTags = SeoModule::getEnabledTags();
 
+$defaultDescription = SeoModule::getDescription();
 $description = (!empty($model->description))
-    ? $model->description . ' | ' . \zrk4939\modules\seo\SeoModule::getDescription()
-    : \zrk4939\modules\seo\SeoModule::getDescription();
+    ? (!empty($defaultDescription) && $model->manual) ? $model->description : $model->description . ' | ' . $defaultDescription
+    : Yii::$app->name;
 
 if ($addCanonical) {
     $this->registerLinkTag([
@@ -34,7 +37,7 @@ if (!empty($model->title) && isset($enabledTags['title'])) {
     $this->title = $model->title;
 }
 
-$this->title = $config['titlePrefix'] . $this->title . $config['titlePostfix'];
+$this->title = ($model->manual) ? $this->title : $config['titlePrefix'] . $this->title . $config['titlePostfix'];
 
 if (!empty($description) && isset($enabledTags['description'])) {
     $this->registerMetaTag([
