@@ -37,7 +37,7 @@ if (!empty($model->title) && isset($enabledTags['title'])) {
     $this->title = $model->title;
 }
 
-$this->title = ($model->manual) ? $this->title : $config['titlePrefix'] . $this->title . $config['titlePostfix'];
+$this->title = (!empty($model) && $model->manual) ? $this->title : $config['titlePrefix'] . $this->title . $config['titlePostfix'];
 
 if (!empty($description) && isset($enabledTags['description'])) {
     $this->registerMetaTag([
