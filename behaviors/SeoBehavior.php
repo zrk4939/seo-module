@@ -68,7 +68,7 @@ class SeoBehavior extends Behavior
         if ($meta->manual == 0) {
             $meta->setAttribute('title', Html::encode($model->{$this->nameAttribute}));
             $meta->setAttribute('keywords', Html::encode($model->{$this->nameAttribute}));
-            $meta->setAttribute('description', Html::encode(StringHelper::truncateWords(strip_tags($model->{$this->textAttribute}), $this->countWords)));
+            $meta->setAttribute('description', StringHelper::truncateWords(html_entity_decode(strip_tags($model->{$this->textAttribute})), $this->countWords));
         }
 
         if ($this->imageUrlAttribute && !empty($image_url = ArrayHelper::getValue($model, $this->imageUrlAttribute))) {
