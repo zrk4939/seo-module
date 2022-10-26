@@ -90,7 +90,7 @@ class SeoBehavior extends Behavior
                 $meta->setAttribute('title', Html::encode($model->{$this->titleAttribute}));
             }
             if ($model->{$this->descriptionAttribute}) {
-                $meta->setAttribute('description', StringHelper::truncateWords(html_entity_decode(strip_tags($model->{$this->descriptionAttribute})), $this->countWords));
+                $meta->setAttribute('description', StringHelper::truncateWords(html_entity_decode(strip_tags($model->{$this->descriptionAttribute})), $this->countWords, ''));
             }
             if ($model->{$this->keywordsAttribute}) {
                 $meta->setAttribute('keywords', Html::encode($model->{$this->keywordsAttribute}));
