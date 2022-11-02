@@ -37,5 +37,8 @@ use yii\helpers\Html;
             }
             ?>
         </div>
+        <div class="col-md-6 manual-meta">
+            <?= $form->field($model, 'disable_ending')->checkbox(); ?>
+        </div>
     </div>
 </div>
