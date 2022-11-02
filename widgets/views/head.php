@@ -14,8 +14,9 @@ $config = SeoModule::getConfig();
 $enabledTags = SeoModule::getEnabledTags();
 
 $defaultDescription = SeoModule::getDescription();
+
 $description = (!empty($model->description))
-    ? (!empty($defaultDescription) && $model->manual) ? $model->description : $model->description . ' | ' . $defaultDescription
+    ? ($model->disable_ending || empty($defaultDescription)) ? $model->description : $model->description . ' | ' . $defaultDescription
     : Yii::$app->name;
 
 if ($addCanonical) {
@@ -37,7 +38,7 @@ if (!empty($model->title) && isset($enabledTags['title'])) {
     $this->title = $model->title;
 }
 
-$this->title = (!empty($model) && $model->manual) ? $this->title : $config['titlePrefix'] . $this->title . $config['titlePostfix'];
+$this->title = ($model && $model->disable_ending) ? $this->title : $this->title . $config['titlePostfix'];
 
 if (!empty($description) && isset($enabledTags['description'])) {
     $this->registerMetaTag([

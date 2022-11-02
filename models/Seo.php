@@ -17,6 +17,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $created_at
  * @property integer $updated_at
  * @property boolean $status
+ * @property boolean $disable_ending
  */
 class Seo extends \yii\db\ActiveRecord
 {
@@ -38,7 +39,7 @@ class Seo extends \yii\db\ActiveRecord
             [['url', 'title', 'keywords', 'image_url'], 'string', 'max' => 255],
             [['description'], 'string'],
             [['url'], 'unique'],
-            [['manual', 'status'], 'boolean'],
+            [['manual', 'status', 'disable_ending'], 'boolean'],
         ];
     }
 
@@ -62,7 +63,8 @@ class Seo extends \yii\db\ActiveRecord
             'description' => 'Описание (description)',
             'image_url' => 'Фото',
             'manual' => 'Указать вручную',
-            'status' => 'Активно'
+            'status' => 'Активно',
+            'disable_ending' => 'Отключить добавление окончания',
         ];
     }
 }

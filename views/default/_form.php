@@ -42,6 +42,8 @@ use yii\helpers\Html;
                     ?>
                 </div>
             </div>
+
+            <?= $form->field($model, 'disable_ending')->checkbox(); ?>
         </div>
     </div>
 

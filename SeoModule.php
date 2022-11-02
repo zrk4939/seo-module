@@ -8,7 +8,6 @@ use Yii;
 
 class SeoModule extends \yii\base\Module
 {
-    public $titlePrefix = '';
     public $titlePostfix = '';
 
     public $enabledTags = [
@@ -60,7 +59,6 @@ class SeoModule extends \yii\base\Module
         $module = SeoModule::getInstance();
 
         return [
-            'titlePrefix' => $module->titlePrefix,
             'titlePostfix' => $module->titlePostfix,
         ];
     }
