@@ -32,6 +32,8 @@ class SeoModule extends \yii\base\Module
 
     public $pageDelimenter = '|';
 
+    public $locale = 'ru_RU';
+
     /**
      * @inheritdoc
      */
@@ -72,6 +74,7 @@ class SeoModule extends \yii\base\Module
             'pageTitleString' => $module->pageTitleString,
             'pageDescriptionString' => $module->pageDescriptionString,
             'pageDelimenter' => $module->pageDelimenter,
+            'locale' => $module->locale,
         ];
     }
 
