@@ -62,7 +62,7 @@ if (!empty($model->keywords) && isset($enabledTags['keywords'])) {
     ]);
 }
 
-// register og meta
+// register og & twitter meta
 
 $this->registerMetaTag([
     'property' => 'og:url',
@@ -76,9 +76,19 @@ $this->registerMetaTag([
     'property' => 'og:locale',
     'content' => Yii::$app->formatter->locale,
 ]);
+
+$this->registerMetaTag([
+    'propery' => 'twitter:card',
+    'content' => 'summary',
+]);
 if (!empty($model->title) && isset($enabledTags['title'])) {
     $this->registerMetaTag([
         'property' => 'og:title',
+        'content' => $model->title,
+    ]);
+
+    $this->registerMetaTag([
+        'property' => 'twitter:title',
         'content' => $model->title,
     ]);
 }
@@ -87,10 +97,20 @@ if (!empty($description) && isset($enabledTags['description'])) {
         'property' => 'og:description',
         'content' => $description,
     ]);
+
+    $this->registerMetaTag([
+        'property' => 'twitter:description',
+        'content' => $description,
+    ]);
 }
 if (!empty($model->image_url) && isset($enabledTags['og:image'])) {
     $this->registerMetaTag([
         'property' => 'og:image',
+        'content' => Yii::$app->request->hostInfo . $model->image_url,
+    ]);
+
+    $this->registerMetaTag([
+        'property' => 'twitter:image',
         'content' => Yii::$app->request->hostInfo . $model->image_url,
     ]);
 }
