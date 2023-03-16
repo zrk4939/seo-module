@@ -24,6 +24,14 @@ class SeoModule extends \yii\base\Module
 
     public $defaultDescription = '';
 
+    public $addPageString = false;
+
+    public $pageTitleString = 'Page';
+
+    public $pageDescriptionString = 'Page';
+
+    public $pageDelimenter = '|';
+
     /**
      * @inheritdoc
      */
@@ -60,6 +68,10 @@ class SeoModule extends \yii\base\Module
 
         return [
             'titlePostfix' => $module->titlePostfix,
+            'addPageString' => $module->addPageString,
+            'pageTitleString' => $module->pageTitleString,
+            'pageDescriptionString' => $module->pageDescriptionString,
+            'pageDelimenter' => $module->pageDelimenter,
         ];
     }
 

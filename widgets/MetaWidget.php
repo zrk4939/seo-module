@@ -22,6 +22,7 @@ class MetaWidget extends Widget
     {
         $url = (Yii::$app->request->url === '') ? '/' : Yii::$app->request->url;
         $model = Seo::find()->where(['url' => $url])->one();
+        $page = Yii::$app->request->get('page');
 
         return $this->render('head', [
             'model' => $model,
@@ -32,7 +33,9 @@ class MetaWidget extends Widget
             'absoluteUrl' => $this->getAbsoluteUrl($model),
 
             'addAlternateMobile' => $this->addAlternateMobile,
-            'mobileUrl' => $this->getMobileUrl($model)
+            'mobileUrl' => $this->getMobileUrl($model),
+
+            'page' => $page,
         ]);
     }
 
