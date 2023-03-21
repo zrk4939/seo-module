@@ -20,7 +20,7 @@ class MetaWidget extends Widget
 
     public function run()
     {
-        $url = (Yii::$app->request->url === '') ? '/' : Yii::$app->request->url;
+        $url = (Yii::$app->request->url === '') ? '/' : parse_url(Yii::$app->request->url, PHP_URL_PATH);
         $model = Seo::find()->where(['url' => $url])->one();
         $page = Yii::$app->request->get('page');
 
