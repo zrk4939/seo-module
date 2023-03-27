@@ -74,6 +74,6 @@ class MetaWidget extends Widget
             unset($query_arr['page']);
         }
 
-        return $path . '?' . http_build_query($query_arr);;
+        return (!empty($query_arr)) ? $path . '?' . http_build_query($query_arr) : $path;
     }
 }
