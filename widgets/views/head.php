@@ -17,7 +17,7 @@ $enabledTags = SeoModule::getEnabledTags();
 if ($addCanonical) {
     $this->registerLinkTag([
         'rel' => 'canonical',
-        'href' => $canonicalUrl,
+        'href' => Yii::$app->request->url,
     ]);
 }
 
