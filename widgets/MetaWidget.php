@@ -20,8 +20,7 @@ class MetaWidget extends Widget
 
     public function run()
     {
-        $url = (Yii::$app->request->url === '') ? '/' : parse_url(Yii::$app->request->url, PHP_URL_PATH);
-        $model = Seo::find()->where(['url' => $url])->one();
+        $model = Seo::find()->where(['url' => $this->getFilteredUrl()])->one();
         $page = Yii::$app->request->get('page');
 
         return $this->render('head', [
@@ -60,5 +59,21 @@ class MetaWidget extends Widget
     public function getMobileUrl($model)
     {
         return null;
+    }
+
+    /**
+     * @return string
+     */
+    private function getFilteredUrl()
+    {
+        $path = (Yii::$app->request->url === '') ? '/' : parse_url(Yii::$app->request->url, PHP_URL_PATH);
+        $query = parse_url(Yii::$app->request->url, PHP_URL_QUERY);
+
+        parse_str($query, $query_arr);
+        if (!empty($query_arr['page'])) {
+            unset($query_arr['page']);
+        }
+
+        return $path . '?' . http_build_query($query_arr);;
     }
 }
